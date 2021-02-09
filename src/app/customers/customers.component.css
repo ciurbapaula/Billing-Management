@@ -1,0 +1,15 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+h1 {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 250%;
+  }
+.row{
+margin-bottom:10px;
+}
+.btn-create{
+    background-color: #EE2932;
+    border:none;
+    border-radius: 4px;
+    color:white;
+      }

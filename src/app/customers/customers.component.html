@@ -1,0 +1,82 @@
+<div class="well" *ngIf="customer == null">
+    <h1>Customers</h1>
+    <button type="button" class="btn-create" (click)="createNewCustomer()">Create New</button>
+    <br>
+    <br>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Address</th>
+                <!-- <th scope="col">Date</th> -->
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of customerList">
+                <td>{{customer.customerID}}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.address}}</td>
+                <!-- <td>{{customer.info|date:'yyyy/MM/dd HH:mm:ss'}}</td> -->
+                <td>
+                    <button type="button" class="btn btn-success" style="margin-right: 10px;"
+                        (click)="edit(customer.customerID)">Edit</button>
+                    <button type="button" class="btn btn-primary" style="margin-right: 10px;"
+                        (click)="details()">Details</button>
+                    <button type="button" class="btn btn-danger" (click)="delete(customer.customerID)">Delete</button>
+                </td>
+            <tr>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="well" *ngIf="customer != null">
+    <!-- *ngIf="(createCustomer|| editCustomer) && customer != null"> -->
+    <h3 *ngIf="customer.customerID==0">Create New Customer</h3>
+    <h3 *ngIf="customer.customerID!=0">Edit Customer</h3>
+    <br>
+
+    <div class="row">
+        <div class="col-md-2">
+            Name
+        </div>
+        <div class="col-md-3">
+            <input style="width:100%" type="text" [(ngModel)]="customer.name">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            Address
+        </div>
+        <div class="col-md-3">
+            <input style="width:100%" type="text" [(ngModel)]="customer.address">
+        </div>
+    </div>
+
+
+    <div class="row" *ngIf="newCustomer">
+
+        <div class="col-md-2">
+            Info
+        </div>
+        <div class="col-md-3">
+            <textarea rows="4" style="width:100%" [(ngModel)]="customer.info"></textarea>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+            <button style="width:45%;" class="btn btn-info" (click)="create()"
+                *ngIf="customer.customerID==0">Create</button>
+            <button style="width:45%;" class="btn btn-info" (click)="save()"
+                *ngIf="customer.customerID!=0">Save</button>
+            <button style="width:45%; float:right" class="btn btn-info" (click)="cancel($event)">Cancel</button>
+        </div>
+    </div>
+</div>
